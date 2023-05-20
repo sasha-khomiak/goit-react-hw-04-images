@@ -1,6 +1,6 @@
 // імпорт бібліотек
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 
 // стилізація нашого компонента
 import { Li, Thumb, Img } from './ImageGalleryItem.styled';
@@ -9,27 +9,25 @@ import { Li, Thumb, Img } from './ImageGalleryItem.styled';
 // // обʼєкт image - містить інформацію про картинку
 // // togleModal - метод перемикач модалки (в даному разі на її показ),
 // // setImageLink - передача в стейт картинки для модалки
-export default class ImageGalleryItem extends Component {
+const ImageGalleryItem = ({ setImageLink, togleModal, image }) => {
   //
   // обробник кліку на на фотографію, передає в стейт App лінк фотографії
   // і показує модалку всередині із тою фотографією
-  onClickShowPhoto = () => {
-    const { setImageLink, togleModal, image } = this.props;
+  const onClickShowPhoto = () => {
     setImageLink(image.largeImageURL);
     togleModal();
   };
 
-  render() {
-    const { image } = this.props;
-    return (
-      <Li>
-        <Thumb onClick={this.onClickShowPhoto}>
-          <Img src={image.webformatURL} alt={image.tags} loading="lazy" />
-        </Thumb>
-      </Li>
-    );
-  }
-}
+  return (
+    <Li>
+      <Thumb onClick={onClickShowPhoto}>
+        <Img src={image.webformatURL} alt={image.tags} loading="lazy" />
+      </Thumb>
+    </Li>
+  );
+};
+
+export default ImageGalleryItem;
 
 // перевірка PropTypes
 ImageGalleryItem.propTypes = {
