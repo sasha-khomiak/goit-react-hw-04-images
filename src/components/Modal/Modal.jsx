@@ -28,7 +28,7 @@ const Modal = ({ imageLink, setShowModal }) => {
       // коли демонтується модалка, чіпляємо очистку слухача на натискання кнопок із обробником hanleKeyDown
       document.removeEventListener('keydown', hanleKeyDown);
     };
-  }, []);
+  }, [setShowModal]);
 
   // Якшо клік події відбувся по Overlay (збіглися target і currentTarget) то закриваємо модалку
   const handleOverlayClick = event => {
