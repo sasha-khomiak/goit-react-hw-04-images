@@ -8,14 +8,14 @@ import { Ul } from './ImageGallery.styled';
 import ImageGalleryItem from '../ImageGalleryItem';
 
 // наш компонент галереї
-const ImageGallery = ({ imagesArray, setImageLink, togleModal }) => {
+const ImageGallery = ({ imagesArray, setImageLink, setShowModal }) => {
   return (
     <Ul>
       {imagesArray.map(image => (
         <ImageGalleryItem
           image={image}
           key={image.id}
-          togleModal={togleModal}
+          setShowModal={setShowModal}
           setImageLink={setImageLink}
         />
       ))}
@@ -26,7 +26,7 @@ const ImageGallery = ({ imagesArray, setImageLink, togleModal }) => {
 // перевірка PropTypes
 ImageGallery.propTypes = {
   imagesArray: PropTypes.array.isRequired,
-  togleModal: PropTypes.func.isRequired,
+  setShowModal: PropTypes.func.isRequired,
   setImageLink: PropTypes.func.isRequired,
 };
 

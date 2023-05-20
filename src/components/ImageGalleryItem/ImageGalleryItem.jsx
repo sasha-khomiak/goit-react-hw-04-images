@@ -9,13 +9,13 @@ import { Li, Thumb, Img } from './ImageGalleryItem.styled';
 // // обʼєкт image - містить інформацію про картинку
 // // togleModal - метод перемикач модалки (в даному разі на її показ),
 // // setImageLink - передача в стейт картинки для модалки
-const ImageGalleryItem = ({ setImageLink, togleModal, image }) => {
+const ImageGalleryItem = ({ setImageLink, setShowModal, image }) => {
   //
   // обробник кліку на на фотографію, передає в стейт App лінк фотографії
   // і показує модалку всередині із тою фотографією
   const onClickShowPhoto = () => {
     setImageLink(image.largeImageURL);
-    togleModal();
+    setShowModal(true);
   };
 
   return (
@@ -33,5 +33,5 @@ export default ImageGalleryItem;
 ImageGalleryItem.propTypes = {
   image: PropTypes.object.isRequired,
   setImageLink: PropTypes.func.isRequired,
-  togleModal: PropTypes.func.isRequired,
+  setShowModal: PropTypes.func.isRequired,
 };
