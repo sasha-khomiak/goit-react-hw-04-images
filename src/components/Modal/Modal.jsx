@@ -14,21 +14,21 @@ const modalRoot = document.querySelector('#modal-root');
 // компонент нашої модалки
 const Modal = ({ imageLink, setShowModal }) => {
   useEffect(() => {
+    // обробник слухача якщо натиснута кнопка Escape - демонтуємо модалку
+    const hanleKeyDown = event => {
+      if (event.code === 'Escape') {
+        setShowModal(false);
+      }
+    };
+
     // коли монтується модалка, чіпляємо слухача на натискання кнопок із обробником hanleKeyDown
-    window.addEventListener('keydown', hanleKeyDown);
+    document.addEventListener('keydown', hanleKeyDown);
 
     return () => {
       // коли демонтується модалка, чіпляємо очистку слухача на натискання кнопок із обробником hanleKeyDown
-      window.removeEventListener('keydown', hanleKeyDown);
+      document.removeEventListener('keydown', hanleKeyDown);
     };
   }, []);
-
-  // обробник слухача якщо натиснута кнопка Escape - демонтуємо модалку
-  const hanleKeyDown = event => {
-    if (event.code === 'Escape') {
-    }
-    setShowModal(false);
-  };
 
   // Якшо клік події відбувся по Overlay (збіглися target і currentTarget) то закриваємо модалку
   const handleOverlayClick = event => {
@@ -51,53 +51,6 @@ const Modal = ({ imageLink, setShowModal }) => {
 };
 
 export default Modal;
-
-////////////////////////
-// export default class Modal extends Component {
-// коли монтується модалка, чіпляємо слухача на натискання кнопок із обробником hanleKeyDown
-// componentDidMount() {
-//   // console.log('монтуємо модалку');
-//   window.addEventListener('keydown', this.hanleKeyDown);
-// }
-
-// // коли демонтується модалка, чіпляємо очистку слухача на натискання кнопок із обробником hanleKeyDown
-// componentWillUnmount() {
-//   // console.log('розмонтовуємо модалку');
-//   window.removeEventListener('keydown', this.hanleKeyDown);
-// }
-
-// // обробник слухача якщо натиснута кнопка Escape - демонтуємо модалку, тобто перемикаємо тогл
-// hanleKeyDown = event => {
-//   const { setShowModal } = this.props;
-//   if (event.code === 'Escape') {
-//   }
-//   setShowModal(false);
-// };
-
-// // Якшо клік події відбувся по Overlay (збіглися target і currentTarget) то закриваємо модалку
-// handleOverlayClick = event => {
-//   const { setShowModal } = this.props;
-//   const { currentTarget, target } = event;
-//   if (currentTarget === target) {
-//     setShowModal(false);
-//   }
-// };
-
-// рендер компонента в новий портал (використовуємо createPortal), другий параметр назва порталу
-// render() {
-//   const { imageLink } = this.props;
-//   return createPortal(
-//     <div>
-//       <Overlay onClick={this.handleOverlayClick}>
-//         <ModalContainer>
-//           <Img src={imageLink} alt="" />
-//         </ModalContainer>
-//       </Overlay>
-//     </div>,
-//     modalRoot
-//   );
-// }
-// }
 
 // перевірка PropTypes
 Modal.propTypes = {
