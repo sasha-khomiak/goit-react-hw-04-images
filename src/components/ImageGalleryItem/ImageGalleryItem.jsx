@@ -18,6 +18,7 @@ const ImageGalleryItem = ({ setImageLink, setShowModal, image }) => {
     setShowModal(true);
   };
 
+  //верстка компонента
   return (
     <Li>
       <Thumb onClick={onClickShowPhoto}>
